@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+       <title>DRC - Distributed Report Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="./app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Report Card</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Teacher
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="teacher.html">Create Teacher Contract</a>
+                  <a class="dropdown-item" href="#">Get Teacher Contract</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Enter Student Grades</a>
+                </div>
+             </li>
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="parent.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Parent
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="parent.html">Create Reportcard</a>
+                <a class="dropdown-item" href="#">Enroll Student</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Check Student Grades</a>
+              </div>
+           </li>
+           <li class="nav-item  dropdown">
+            <a class="nav-link dropdown-toggle" href="student.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Student
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="student.html">Check Grades</a>
+              <a class="dropdown-item" href="#">Check Reportcard balance</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Get Reward</a>
+            </div>
+          </li>
+      </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>            
+            <div class="container-fluid">
+                
+                    <div class="row">
+                        <div class="col-lg-8">
+                
+                            <h1>Teacher</h1>
+                            <p>This page is intended for the teacher. 
+                                <br/>
+                                Additionally you can add a contract.</p>
+                            <h3>You have <span class="black"><span id="balanceTokenInToken"></span> TOKEN</span> in your account</h3>
+                
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card ">
+                                        <div class="card-header">Set Teacher Contract</div>
+                                        <div class="card-body">
+                
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="inputAmountSendToken">Name</label>
+                                                    <input type="text" name="inputTeacherAddress" class="form-control"
+                                                           id="inputTeacherAddress" placeholder="e.g. 0x123ABde44...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputBeneficiarySendToken">Aaddress</label>
+                                                    <input type="text" class="form-control" id="inputBeneficiarySendToken"
+                                                           name="inputBeneficiarySendToken" placeholder="e.g. 0x123ABde44...">
+                                                </div>
+                                                <button type="button" class="btn btn-primary" onclick="App.getStudentList();return false;">
+                                                    Set Contract
+                                                </button>
+                                            </form>
+                
+                                        </div>
+                                        <div class="card-footer">If you already have a teacher contract you can look it up and set it here.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">Create Teacher Contract</div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="inputAmountAllowanceToken">Name</label>
+                                                    <input type="number" name="inputAmountAllowanceToken" class="form-control"
+                                                           id="inputAmountAllowanceToken" placeholder="e.g., 95">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputBeneficiaryAllowanceToken">Address</label>
+                                                    <input type="text" class="form-control" id="inputBeneficiaryAllowanceToken"
+                                                           name="inputBeneficiaryAllowanceToken" placeholder="e.g. 0x123ABde44...">
+                                                </div>
+                                                <button type="button" class="btn btn-primary"
+                                                        onclick="App.allowanceToken();return false;">Create teacher contract
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="card-footer">You can create a new teacher contract here. Just enter your name and hit create.
+                                        </div>
+                                    </div>
+                
+                                </div>
+                
+                
+                            </div>
+                
+                            <br>
+                            <div class="card">
+                                <div class="card-header">Students</div>
+                                <div class="card-body">
+                                        <table class="table" id="table-div">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr><td>0</td><td>Novak</td><td>0xf25186b5081ff5ce73482ad761db0eb0d25abfbf</td></tr>
+                                                  <tr>
+                                                    <td>John</td>
+                                                    <td>Doe</td>
+                                                    <td>john@example.com</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Mary</td>
+                                                    <td>Moe</td>
+                                                    <td>mary@example.com</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>July</td>
+                                                    <td>Dooley</td>
+                                                    <td>july@example.com</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            
+                                                                                        
+                                </div>
+                            </div>
+                        </div>
+                
+                
+                        <div class="col-lg-4" style="background-color: #eee; min-height: 100vh;">
+                            <h3>Events from the Token Contract</h3>
+                            <div id="tokenEvents"></div>
+                            <h3>Status from our Javascript</h3>
+                            <span id="status"></span>
+                            <h3>Important Information</h3>
+                            <span id="importantInformation"></span>
+                        </div>
+                        </div>
+                </div>
+                
+                <script type="text/javascript">
+                
+                    window.addEventListener('load', function () {
+                        App.initTeacher();
+                    });
+                </script>
+                
+</body>
+</html>
